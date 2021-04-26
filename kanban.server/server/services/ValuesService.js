@@ -3,7 +3,7 @@ import { BadRequest } from '../utils/Errors'
 
 class ValuesService {
   async find(query = {}) {
-    const values = await dbContext.Values.find(query)
+    const values = await dbContext.Values.find(query) // NOTE .populate('creator', 'name', etc)
     return values
   }
 

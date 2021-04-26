@@ -14,3 +14,5 @@ const Account = new Schema(
 )
 
 export default Account
+
+// NOTE LEAVE THESE VALUES ALONE, COPY FROM VALUE MODEL
