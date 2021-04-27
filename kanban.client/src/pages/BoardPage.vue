@@ -10,6 +10,7 @@
 import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
+import { boardsService } from '../services/BoardsService'
 import Notification from '../utils/Notification'
 export default {
   name: 'BoardPage',
