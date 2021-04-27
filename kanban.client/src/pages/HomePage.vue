@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="col-8 card shadow" v-else>
-      <h1>LOG IN YA BITCH</h1>
+      <h1>LOG IN YA B*</h1>
     </div>
   </div>
 </template>
