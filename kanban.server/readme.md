@@ -1,5 +1,18 @@
 # Auth0 Server Setup
 
+POSTMAN API Testing
+Test-Driven development allows you to test your back-end code in real time to ensure that they won't conflict with front-end code
+
+You can test your APIs before merging the back-end branch, which ensures you won't be pushing bad code
+
+You can set up Template objects in your Collection, to keep global variables, such as your endpoint and authorization token, consistent across all server requests.  Sub-folders and requests from a parent collection will inherit the auth token by default, so you will merely have to change the value of the global variable to reflect the changes across all requests in the collection.
+
+It's not advisable to make the initial Auth parent your highest-level collection, as then every element of your app requires a login which is not very user-friendly
+
+You can test your API requests individually in the Tests tab, or you can run a global test with the top-level parent's "Run" button
+
+Creating a "Test Database" in your .env will improve your server hygiene, since each test will make real requests to your server and it can quickly clog your server with redundant data.
+
 This template is designed to help kickstart a project that utilizes <a href="https://auth0.com/" target="_blank">Auth0.</a> The bulk of the structure has been setup and requires a few pieces of configuration.
 
 The first thing you will need to provide is in the `.env` file. You will need to supply the port, Auth0 credentials, and mongoDb connectionstring. These environment variables are used throughout the template, so be sure to add them in when moving into production as well.
