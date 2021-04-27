@@ -12,6 +12,7 @@ export class ListsController extends BaseController {
       .get('/:boardId', this.getListsByBoardId)
       .get('/:id', this.getListById)
       .post('', this.createList)
+      .put('/:id', this.editList)
       .delete('/:id', this.deleteList)
   }
 
@@ -40,6 +41,16 @@ export class ListsController extends BaseController {
       req.body.accountId = req.userInfo.id
       const list = await listsService.create(req.body)
       return res.send(list)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async editList(req, res, next) {
+    try {
+      req.body.id = req.params.id
+      const data = await listsService.edit(req.body)
+      return res.send(data)
     } catch (error) {
       next(error)
     }

@@ -18,6 +18,14 @@ class TasksService {
     return await dbContext.Tasks.create(body)
   }
 
+  async edit(body) {
+    const data = await dbContext.Tasks.findOneAndUpdate({ _id: body.id }, body, { new: true })
+    if (!data) {
+      throw new BadRequest('Invalid Id')
+    }
+    return data
+  }
+
   async delete(id) {
     const data = await dbContext.Tasks.findOneAndDelete({ _id: id })
     if (!data) {

@@ -18,6 +18,14 @@ class ListsService {
     return await dbContext.Lists.create(body)
   }
 
+  async edit(body) {
+    const data = await dbContext.Lists.findOneAndUpdate({ _id: body.id }, body, { new: true })
+    if (!data) {
+      throw new BadRequest('Invalid Id')
+    }
+    return data
+  }
+
   async delete(id) {
     const data = await dbContext.Lists.findOneAndDelete({ _id: id })
     if (!data) {

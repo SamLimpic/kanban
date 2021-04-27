@@ -12,6 +12,7 @@ export class BoardsController extends BaseController {
       .get('', this.getAllBoards)
       .get('/:id', this.getBoardById)
       .post('', this.createBoard)
+      .put('/:id', this.editBoard)
       .delete('/:id', this.deleteBoard)
   }
 
@@ -40,6 +41,16 @@ export class BoardsController extends BaseController {
       req.body.accountId = req.userInfo.id
       const board = await boardsService.create(req.body)
       return res.send(board)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async editBoard(req, res, next) {
+    try {
+      req.body.id = req.params.id
+      const data = await boardsService.edit(req.body)
+      return res.send(data)
     } catch (error) {
       next(error)
     }
