@@ -11,6 +11,7 @@ export class BoardsController extends BaseController {
     // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .get('', this.getAllBoards)
       .get('/:id', this.getBoardById)
+      .get('/:id/lists', this.getListsByBoardId)
       .post('', this.createBoard)
       .put('/:id', this.editBoard)
       .delete('/:id', this.deleteBoard)
@@ -30,6 +31,16 @@ export class BoardsController extends BaseController {
     try {
       const board = await boardsService.findOne({ _id: req.params.id })
       return res.send(board)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getListsByBoardId(req, res, next) {
+    try {
+      const lists = await boardsService.findListsByBoard({ _id: req.params.id }) // REVIEW Underscore may/may not be needed
+      // NOTE query may not be required
+      return res.send(lists)
     } catch (error) {
       next(error)
     }

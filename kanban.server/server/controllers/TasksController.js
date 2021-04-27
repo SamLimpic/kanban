@@ -9,27 +9,27 @@ export class TasksController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
     // NOTE This needs to be at the TOP of ALL routers
     // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
-      .get('/:listId', this.getTasksByListId)
       .get('/:id', this.getTaskById)
+      .get('/:id/comments', this.getCommentsByTaskId)
       .post('', this.createTask)
       .put('/:id', this.editTask)
       .delete('/:id', this.deleteTask)
-  }
-
-  async getTasksByListId(req, res, next) {
-    try {
-      const tasks = await tasksService.find({ _listId: req.params.id }) // REVIEW Underscore may/may not be needed
-      // NOTE query may not be required
-      return res.send(tasks)
-    } catch (error) {
-      next(error)
-    }
   }
 
   async getTaskById(req, res, next) {
     try {
       const task = await tasksService.findOne({ _id: req.params.id })
       return res.send(task)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getCommentsByTaskId(req, res, next) {
+    try {
+      const comments = await tasksService.findCommentByTask({ _id: req.params.id }) // REVIEW Underscore may/may not be needed
+      // NOTE query may not be required
+      return res.send(comments)
     } catch (error) {
       next(error)
     }

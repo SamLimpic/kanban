@@ -9,27 +9,27 @@ export class ListsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
     // NOTE This needs to be at the TOP of ALL routers
     // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
-      .get('/:boardId', this.getListsByBoardId)
       .get('/:id', this.getListById)
+      .get('/:id/tasks', this.getTasksByListId)
       .post('', this.createList)
       .put('/:id', this.editList)
       .delete('/:id', this.deleteList)
-  }
-
-  async getListsByBoardId(req, res, next) {
-    try {
-      const lists = await listsService.find({ _boardId: req.params.id }) // REVIEW Underscore may/may not be needed
-      // NOTE query may not be required
-      return res.send(lists)
-    } catch (error) {
-      next(error)
-    }
   }
 
   async getListById(req, res, next) {
     try {
       const list = await listsService.findOne({ _id: req.params.id })
       return res.send(list)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getTasksByListId(req, res, next) {
+    try {
+      const tasks = await listsService.findTasksByList({ _id: req.params.id }) // REVIEW Underscore may/may not be needed
+      // NOTE query may not be required
+      return res.send(tasks)
     } catch (error) {
       next(error)
     }

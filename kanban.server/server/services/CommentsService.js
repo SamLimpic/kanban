@@ -2,10 +2,6 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class CommentsService {
-  async find(id) {
-    return await dbContext.Comments.find({ _taskId: id }) // NOTE .populate('creator', 'name', etc)
-  }
-
   async findOne(id) {
     const data = await dbContext.Comments.findOne({ _id: id })
     if (!data) {

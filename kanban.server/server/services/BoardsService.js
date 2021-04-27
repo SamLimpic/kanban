@@ -14,6 +14,10 @@ class BoardsService {
     return data
   }
 
+  async findListsByBoard(id) {
+    return await dbContext.Lists.find({ boardId: id }) // NOTE .populate('creator', 'name', etc)
+  }
+
   async create(body) {
     return await dbContext.Boards.create(body)
   }
