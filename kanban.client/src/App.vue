@@ -1,11 +1,11 @@
 <template>
-  <header>
+  <header class="container-fluid">
     <Navbar />
   </header>
-  <main>
+  <main class="container-fluid">
     <router-view :key="$route.fullPath" />
   </main>
-  <footer>
+  <footer class="container-fluid">
     <div class="bg-dark text-light text-center p-4">
       Made with 💖 by CodeWorks
     </div>

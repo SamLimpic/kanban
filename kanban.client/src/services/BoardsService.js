@@ -33,7 +33,6 @@ class BoardsService {
   async deleteBoard(id) {
     await api.delete(`api/boards/${id}`)
     AppState.boards = AppState.boards.filter(board => board.id !== id)
-    this.getAllBoards()
   }
 }
 

@@ -11,17 +11,16 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { boardsService } from '../services/BoardsService'
+import { listsService } from '../services/ListsService'
 import Notification from '../utils/Notification'
 export default {
   name: 'BoardPage',
   setup() {
     const route = useRoute()
     const state = reactive({
-      activeBoard: computed(() => AppState.activeBoard),
-      activeList: computed(() => AppState.activeList),
-      activeTask: computed(() => AppState.activeTask),
-      activeComment: computed(() => AppState.activeComment),
-      lists: computed(() => AppState.lists)
+      newList: {},
+      lists: computed(() => AppState.lists),
+      activeBoard: computed(() => AppState.activeBoard)
     })
     onMounted(async() => {
       try {
@@ -32,6 +31,13 @@ export default {
     })
     return {
       state,
+      async createList() {
+        try {
+          await listsService.createList(state.newList)
+        } catch (error) {
+          Notification.toast('Error: ', error, 'error')
+        }
+      },
       account: computed(() => AppState.account)
     }
   }
