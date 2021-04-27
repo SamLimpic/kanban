@@ -6,13 +6,12 @@ class BoardsService {
     return await dbContext.Boards.find(query) // NOTE .populate('creator', 'name', etc)
   }
 
-  async findById(id) {
-    const board = await dbContext.Boards.findById(id)
-    // NOTE might need to use  findOne({_id: id}) if the id property looks like _id
-    if (!board) {
+  async findOne(id) {
+    const data = await dbContext.Boards.findOne({ _id: id })
+    if (!data) {
       throw new BadRequest('Invalid Id')
     }
-    return board
+    return data
   }
 
   async create(body) {
@@ -20,8 +19,8 @@ class BoardsService {
   }
 
   async delete(id) {
-    const board = await dbContext.Boards.findOneAndDelete({ _id: id })
-    if (!board) {
+    const data = await dbContext.Boards.findOneAndDelete({ _id: id })
+    if (!data) {
       throw new BadRequest('Invalid Id')
     }
     return 'Successfully Deleted'

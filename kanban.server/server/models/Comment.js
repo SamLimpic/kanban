@@ -2,21 +2,21 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
-const Task = new Schema(
+const Comment = new Schema(
   {
     title: { type: String, required: true },
     creatorId: { type: String, ref: 'Account', required: true },
-    listId: { type: ObjectId, ref: 'List', required: true }
+    taskId: { type: ObjectId, ref: 'Task', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
 // NOTE Reference Virtual Template
-Task.virtual('creator', {
+Comment.virtual('creator', {
   localField: 'creatorId',
   ref: 'Account',
   foreignField: '_id',
   justOne: true
 })
 
-export default Task
+export default Comment

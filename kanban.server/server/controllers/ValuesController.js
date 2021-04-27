@@ -6,8 +6,8 @@ export class ValuesController extends BaseController {
     super('api/values')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo) // NOTE This needs to be at the TOP of ALL routers
-      .get('', this.getAll)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
+      .get('', this.getAll)
       .post('', this.create)
   }
 

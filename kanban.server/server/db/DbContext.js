@@ -9,10 +9,10 @@ import CommentSchema from '../models/Comment'
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
-  Board = mongoose.model('Board', BoardSchema);
-  List = mongoose.model('List', ListSchema);
-  Task = mongoose.model('Task', TaskSchema);
-  Comment = mongoose.model('Comment', CommentSchema);
+  Boards = mongoose.model('Board', BoardSchema);
+  Lists = mongoose.model('List', ListSchema);
+  Tasks = mongoose.model('Task', TaskSchema);
+  Comments = mongoose.model('Comment', CommentSchema);
 }
 
 export const dbContext = new DbContext()
