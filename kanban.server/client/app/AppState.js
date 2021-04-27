@@ -5,6 +5,10 @@ class AppState extends EventEmitter {
   user = {}
   account = {}
   values = []
+  boards = []
+  lists = []
+  tasks = []
+  comments = []
 }
 
 export const ProxyState = new Proxy(new AppState(), {
