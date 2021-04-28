@@ -1,6 +1,10 @@
 <template>
-  <div class="task-component">
-  <!-- TASK DATA -->
+  <div class="task-component row">
+    <!-- TASK DATA -->
+    <div class="col-12">
+      <h1>I'M HERE!</h1>
+      <h3>{{ taskProp.title }}</h3>
+    </div>
   </div>
 </template>
 
