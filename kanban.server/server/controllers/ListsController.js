@@ -48,6 +48,7 @@ export class ListsController extends BaseController {
 
   async editList(req, res, next) {
     try {
+      req.body.accountId = req.userInfo.id
       req.body.id = req.params.id
       const data = await listsService.edit(req.body)
       return res.send(data)

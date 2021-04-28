@@ -59,6 +59,7 @@ export class BoardsController extends BaseController {
 
   async editBoard(req, res, next) {
     try {
+      req.body.accountId = req.userInfo.id
       req.body.id = req.params.id
       const data = await boardsService.edit(req.body)
       return res.send(data)

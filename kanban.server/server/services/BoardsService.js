@@ -3,7 +3,7 @@ import { BadRequest } from '../utils/Errors'
 
 class BoardsService {
   async find(query = {}) {
-    return await dbContext.Boards.find(query) // NOTE .populate('creator', 'name', etc)
+    return await dbContext.Boards.find(query) // NOTE .populate('creator', 'name, etc')
   }
 
   async findOne(id) {
