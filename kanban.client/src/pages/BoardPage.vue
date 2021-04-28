@@ -1,8 +1,18 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
+  <div class="board-page flex-grow-1 row align-items-center justify-content-center">
+    <div class="col-12 p-5" v-if="!state.loading">
+      <div class="row justify-content-center" v-if="state.lists[0] == null">
+        <div class="col-8 card shadow m-3">
+          <h1>NO LISTS AVAILABLE</h1>
+        </div>
+      </div>
+      <div class="row justify-content-center" v-else>
+        <!-- LIST COMPONENTS DRAWS TO THE PAGE HERE -->
+      </div>
+    </div>
+    <div class="col-12 text-center p-5" v-else>
+      <h1><i class="fas fa-circle-notch fa-spin text-info"></i></h1>
+    </div>
   </div>
 </template>
 
@@ -18,6 +28,7 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
+      loading: true,
       newList: {},
       lists: computed(() => AppState.lists),
       activeBoard: computed(() => AppState.activeBoard)
@@ -25,6 +36,7 @@ export default {
     onMounted(async() => {
       try {
         await boardsService.getListsByBoardId(route.params.id)
+        state.loading = false
       } catch (error) {
         Notification.toast('Error: ', error, 'error')
       }
