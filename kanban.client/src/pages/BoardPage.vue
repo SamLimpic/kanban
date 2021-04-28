@@ -50,6 +50,7 @@ export default {
       async createList() {
         try {
           await Notification.inputModal('Name your List!', 'List name here...')
+          AppState.newPost.boardId = route.params.id
           await listsService.createList(AppState.newPost)
         } catch (error) {
           Notification.toast('Error: ', error, 'error')

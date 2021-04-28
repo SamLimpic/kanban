@@ -1,5 +1,4 @@
 import { AppState } from '../AppState'
-import router from '../router'
 import { api } from './AxiosService'
 
 class TasksService {
@@ -16,7 +15,6 @@ class TasksService {
   async createTask(data) {
     const res = await api.post('api/tasks', data)
     AppState.tasks.push(res.data)
-    router.push({ name: 'TaskPage', params: { id: res.data.id } })
   }
 
   async editTask(id, edit) {

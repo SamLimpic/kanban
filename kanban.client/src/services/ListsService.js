@@ -1,5 +1,4 @@
 import { AppState } from '../AppState'
-import router from '../router'
 import { api } from './AxiosService'
 
 class ListsService {
@@ -16,7 +15,6 @@ class ListsService {
   async createList(data) {
     const res = await api.post('api/lists', data)
     AppState.lists.push(res.data)
-    router.push({ name: 'ListPage', params: { id: res.data.id } })
   }
 
   async editList(id, edit) {

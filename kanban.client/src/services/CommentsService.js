@@ -1,5 +1,4 @@
 import { AppState } from '../AppState'
-import router from '../router'
 import { api } from './AxiosService'
 
 class CommentsService {
@@ -11,7 +10,6 @@ class CommentsService {
   async createComment(data) {
     const res = await api.post('api/comments', data)
     AppState.comments.push(res.data)
-    router.push({ name: 'CommentPage', params: { id: res.data.id } })
   }
 
   async deleteComment(id) {

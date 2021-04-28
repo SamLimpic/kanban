@@ -44,12 +44,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .delete-overlay {
-    position: absolute;
-    top: 1.5rem;
-    right: 2.5rem;
-    height: 1.5rem;
-    width: 1.5rem;
-    z-index: 10;
-  }
+
 </style>

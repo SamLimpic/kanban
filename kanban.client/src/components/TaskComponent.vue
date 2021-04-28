@@ -1,7 +1,10 @@
 <template>
   <div class="task-component row">
     <!-- TASK DATA -->
-    <div class="col-12 text-left" v-if="state.comments">
+    <div class="col-12 text-left position-relative" v-if="state.comments">
+      <button type="button" class="btn btn-sm btn-outline-danger delete-overlay m-0 p-0">
+        <i class="fas fa-times" @click="deleteTask(taskProp.id)"></i>
+      </button>
       <h3>{{ taskProp.title }}</h3>
       <!-- Comment component renders here  -->
       <ul>
@@ -35,7 +38,14 @@ export default {
       }
     })
     return {
-      state
+      state,
+      async deleteTask(id) {
+        try {
+          await tasksService.deleteTask(id)
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      }
     }
   },
   components: {}
