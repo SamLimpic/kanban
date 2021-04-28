@@ -38,7 +38,7 @@ export class TasksController extends BaseController {
   async createTask(req, res, next) {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
-      req.body.accountId = req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       const task = await tasksService.create(req.body)
       return res.send(task)
     } catch (error) {
@@ -48,7 +48,7 @@ export class TasksController extends BaseController {
 
   async editTask(req, res, next) {
     try {
-      req.body.accountId = req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       req.body.id = req.params.id
       const data = await tasksService.edit(req.body)
       return res.send(data)

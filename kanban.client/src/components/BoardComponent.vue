@@ -1,16 +1,14 @@
 <template>
-  <div class="board-component col-3 mt-4">
+  <div class="board-component col-3 mt-4 position-relative">
+    <button type="button" class="btn btn-sm btn-outline-danger delete-overlay m-0 p-0">
+      <i class="fas fa-times" @click="deleteBoard(boardProp.id)"></i>
+    </button>
     <router-link :to="{name:'Board', params:{id:boardProp.id}}">
       <!-- ROUTER LINK WRAPPING BOARD -->
       <div class="row shadow m-3">
-        <div class="col-12 py-2 position-relative">
-          <h3 class="text-right m-0 p-0">
-            <i class="fas fa-times text-danger" @click="deleteBoard"></i>
-          </h3>
-          <div class="text-center">
-            <h3><u>{{ boardProp.title }}</u></h3>
-            <img class="img-fluid mt-1 mb-2" :src="boardProp.imgUrl" alt="">
-          </div>
+        <div class="col-12 text-center py-2">
+          <h3><u>{{ boardProp.title }}</u></h3>
+          <img class="img-fluid mt-1 mb-2" :src="boardProp.imgUrl" alt="">
         </div>
       </div>
       <!-- ROUTER LINK WRAPPING BOARD -->
@@ -30,11 +28,11 @@ export default {
       required: true
     }
   },
-  setup(props) {
+  setup() {
     return {
-      async deleteBoard() {
+      async deleteBoard(id) {
         try {
-          await boardsService.deleteBoard(props.board.id)
+          await boardsService.deleteBoard(id)
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }
@@ -48,8 +46,10 @@ export default {
 <style lang="scss" scoped>
   .delete-overlay {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 3rem;
+    top: 1.5rem;
+    right: 2.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    z-index: 10;
   }
 </style>

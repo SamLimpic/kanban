@@ -1,5 +1,8 @@
 <template>
-  <div class="list-component col-3 mt-4">
+  <div class="list-component col-3 mt-4 position-relative">
+    <button type="button" class="btn btn-sm btn-outline-danger delete-overlay m-0 p-0">
+      <i class="fas fa-times" @click="deleteBoard(Prop.id)"></i>
+    </button>
     <div class="row shadow m-3">
       <div class="col-12 text-center py-2" v-if="state.tasks">
         <h3>
@@ -36,7 +39,14 @@ export default {
       }
     })
     return {
-      state
+      state,
+      async deleteList(id) {
+        try {
+          await listsService.deleteList(id)
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      }
     }
   },
   components: {}

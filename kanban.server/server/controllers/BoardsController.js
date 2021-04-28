@@ -49,7 +49,7 @@ export class BoardsController extends BaseController {
   async createBoard(req, res, next) {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
-      req.body.accountId = req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       const board = await boardsService.create(req.body)
       return res.send(board)
     } catch (error) {
@@ -59,7 +59,7 @@ export class BoardsController extends BaseController {
 
   async editBoard(req, res, next) {
     try {
-      req.body.accountId = req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       req.body.id = req.params.id
       const data = await boardsService.edit(req.body)
       return res.send(data)

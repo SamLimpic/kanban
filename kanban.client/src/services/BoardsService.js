@@ -21,7 +21,7 @@ class BoardsService {
   async createBoard(data) {
     const res = await api.post('api/boards', data)
     AppState.boards.push(res.data)
-    router.push({ name: 'BoardPage', params: { id: res.data.id } })
+    router.push({ name: 'Board', params: { id: res.data.id } })
   }
 
   async editBoard(id, edit) {

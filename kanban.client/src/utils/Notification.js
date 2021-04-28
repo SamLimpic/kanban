@@ -61,7 +61,7 @@ export default class Notification {
     })
 
     if (body) {
-      AppState.newPost = { title: `${body.input}` }
+      AppState.newPost = { title: `${body}` }
     }
   }
 

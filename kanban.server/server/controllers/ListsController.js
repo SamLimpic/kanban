@@ -38,7 +38,7 @@ export class ListsController extends BaseController {
   async createList(req, res, next) {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
-      req.body.accountId = req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       const list = await listsService.create(req.body)
       return res.send(list)
     } catch (error) {
@@ -48,7 +48,7 @@ export class ListsController extends BaseController {
 
   async editList(req, res, next) {
     try {
-      req.body.accountId = req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       req.body.id = req.params.id
       const data = await listsService.edit(req.body)
       return res.send(data)
