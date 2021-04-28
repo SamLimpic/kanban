@@ -17,8 +17,8 @@
           <!-- NOTE BoardComponent is the name of the component page -->
           <!-- NOTE b is the bananna word for boards inside state.boards, and the key is bannana.id-->
           <!-- NOTE board-prop is the kabob cased translation of our boardProp inside BoardComponent-->
-          <BoardComponent v-for="b in state.boards" :key="b.id" :board-prop="b">
-            <!-- <div class="col-3 mt-4">
+          <BoardComponent v-for="b in state.boards" :key="b.id" :board-prop="b" />
+          <!-- <div class="col-3 mt-4">
               <div class="row shadow m-3">
                 <div class="col-12 text-center py-2">
                   <h3><u>BOARD TITLE</u></h3>
@@ -50,8 +50,7 @@
                 </div>
               </div>
             </div> -->
-            <!-- BOARD COMPONENTS DRAWS TO THE PAGE HERE -->
-          </boardcomponent>
+          <!-- BOARD COMPONENTS DRAWS TO THE PAGE HERE -->
         </div>
       </div>
     </div>

@@ -23,7 +23,9 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/board',
+    // NOTE path is referenced in the router link that navigates to the board page from the boardComponent
+    // NOTE Path is defined at params:{id:boardProp.id} -> in boardComponent
+    path: '/board/:id',
     name: 'Board',
     component: loadPage('BoardPage'),
     beforeEnter: authGuard

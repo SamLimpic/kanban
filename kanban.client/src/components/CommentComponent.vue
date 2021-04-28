@@ -8,7 +8,7 @@
 export default {
   name: 'CommentComponent',
   props: {
-    commentProps: {
+    commentProp: {
       type: Object,
       required: true
     }

@@ -8,7 +8,7 @@
 export default {
   name: 'TaskComponent',
   props: {
-    taskProps: {
+    taskProp: {
       type: Object,
       required: true
     }
