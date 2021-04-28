@@ -2,7 +2,9 @@
   <div class="list-component col-3 mt-4">
     <div class="row shadow m-3">
       <div class="col-12 text-center py-2" v-if="state.tasks">
-        <h3><u>{{ listProp.title }}</u></h3>
+        <h3>
+          <u>{{ listProp.title }}</u>
+        </h3>
         <!-- NOTE render taskComponent -->
         <TaskComponent v-for="t in state.tasks" :key="t.id" :task-prop="t" />
       </div>

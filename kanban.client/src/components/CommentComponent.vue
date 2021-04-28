@@ -1,7 +1,7 @@
 <template>
-  <div class="comment-component">
-  <!-- COMMENT DATA -->
-  </div>
+  <li class="comment-component">
+    <h5>{{ commentProp.title }}</h5>
+  </li>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     return {}
   },
   components: {}
