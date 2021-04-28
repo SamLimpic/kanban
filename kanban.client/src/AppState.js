@@ -11,5 +11,6 @@ export const AppState = reactive({
   tasks: [],
   activeTask: null,
   comments: [],
-  activeComment: null
+  activeComment: null,
+  newPost: {}
 })

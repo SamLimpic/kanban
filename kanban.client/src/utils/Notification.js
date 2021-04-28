@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import { AppState } from '../AppState'
 
 export default class Notification {
   /**
@@ -52,8 +53,20 @@ export default class Notification {
     })
   }
 
-  static modal() {
-    Swal.mixin({
+  static async inputModal(title, inputPlaceholder) {
+    const { value: body } = await Swal.fire({
+      title: title,
+      input: 'text',
+      inputPlaceholder: inputPlaceholder
+    })
+
+    if (body) {
+      AppState.newPost = { title: `${body.input}` }
+    }
+  }
+
+  static async multiModal() {
+    await Swal.mixin({
       input: 'text',
       confirmButtonText: 'Next &rarr;',
       showCancelButton: true,
@@ -82,7 +95,7 @@ export default class Notification {
 
   static async radio() {
     /* inputOptions can be an object or Promise */
-    const inputOptions = new Promise((resolve) => {
+    const inputOptions = await new Promise((resolve) => {
       setTimeout(() => {
         resolve({
           '#ff0000': 'Red',
