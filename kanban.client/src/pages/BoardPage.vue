@@ -8,6 +8,9 @@
         </button>
       </div>
       <div class="col-12" v-else>
+        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createList">
+          CREATE LIST
+        </button>
         <div class="row justify-content-around" v-if="state.lists">
           <!-- LIST COMPONENTS DRAWS TO THE PAGE HERE -->
           <ListComponent v-for="l in state.lists" :key="l.id" :list-prop="l" />

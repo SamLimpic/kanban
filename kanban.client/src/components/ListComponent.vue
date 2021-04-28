@@ -4,12 +4,12 @@
       <i class="fas fa-times" @click="deleteList(listProp.id)"></i>
     </button>
     <div class="row shadow m-3">
-      <div class="col-12 text-center py-2" v-if="state.tasks">
+      <div class="col-12 text-center py-2">
         <h3>
           <u>{{ listProp.title }}</u>
         </h3>
         <!-- NOTE render taskComponent -->
-        <TaskComponent v-for="t in state.tasks" :key="t.id" :task-prop="t" />
+
         <form @submit.prevent="createTask(listProp.id)">
           <div class="input group input-group">
             <div class="input-group-prepend">
@@ -17,9 +17,18 @@
                 <i class="fas fa-plus"></i>
               </button>
             </div>
-            <input type="text" class="form-control" placeholder="Create new task..." v-model="state.newPost.title">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Create new task..."
+                   minlength="3"
+                   maxlength="20"
+                   v-model="state.newPost.title"
+            >
           </div>
         </form>
+        <div v-if="state.activeTasks[0] != null">
+          <TaskComponent v-for="t in state.activeTasks" :key="t.id" :task-prop="t" />
+        </div>
       </div>
     </div>
   </div>
@@ -42,11 +51,13 @@ export default {
   setup(props) {
     const state = reactive({
       newPost: {},
+      activeTasks: [],
       tasks: computed(() => AppState.tasks)
     })
     onMounted(async() => {
       try {
         await listsService.getTasksByListId(props.listProp.id)
+        state.activeTasks = state.tasks
       } catch (error) {
         Notification.toast('Error: ', error, 'error')
       }
@@ -56,14 +67,21 @@ export default {
       async createTask(id) {
         try {
           state.newPost.listId = id
+          state.tasks = state.activeTasks
           await tasksService.createTask(state.newPost)
+          state.activeTasks = state.tasks
+          state.newPost = {}
+          location.reload()
         } catch (error) {
           Notification.toast('Error: ', error, 'error')
         }
       },
       async deleteList(id) {
         try {
+          state.tasks = state.activeTasks
           await listsService.deleteList(id)
+          state.activeTasks = state.tasks
+          location.reload()
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }
