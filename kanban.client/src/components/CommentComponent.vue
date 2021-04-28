@@ -1,17 +1,14 @@
 <template>
-  <div class="board-component col-4">
-    <!-- ROUTER LINK WRAPPING BOARD -->
-    <div class="shadow m-3 p-3">
-      <!-- BOARD DATA -->
-    </div>
+  <div class="comment-component">
+  <!-- COMMENT DATA -->
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BoardComponent',
+  name: 'CommentComponent',
   props: {
-    boardProps: {
+    commentProps: {
       type: Object,
       required: true
     }

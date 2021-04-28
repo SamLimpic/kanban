@@ -2,7 +2,7 @@
   <div class="board-page flex-grow-1 row align-items-center justify-content-center">
     <div class="col-12 p-5" v-if="!state.loading">
       <div class="row justify-content-center" v-if="state.lists[0] == null">
-        <div class="col-8 card shadow m-3">
+        <div class="col-8 shadow m-3">
           <h1>NO LISTS AVAILABLE</h1>
         </div>
       </div>
@@ -24,7 +24,7 @@ import { boardsService } from '../services/BoardsService'
 import { listsService } from '../services/ListsService'
 import Notification from '../utils/Notification'
 export default {
-  name: 'BoardPage',
+  name: 'Board',
   setup() {
     const route = useRoute()
     const state = reactive({

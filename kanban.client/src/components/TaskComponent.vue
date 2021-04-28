@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ListComponent',
+  name: 'TaskComponent',
   props: {
     taskProps: {
       type: Object,
