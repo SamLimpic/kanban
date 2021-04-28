@@ -13,41 +13,45 @@
         </button>
       </div>
       <div class="col-10 mt-3" v-else>
-        <div class="row justify-content-around">
-          <!-- {{ state.boards }} -->
-          <div class="col-3 mt-4">
-            <div class="row shadow m-3">
-              <div class="col-12 text-center py-2">
-                <h3><u>BOARD TITLE</u></h3>
-                <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
+        <div class="row justify-content-around" v-if="state.boards">
+          <!-- NOTE BoardComponent is the name of the component page -->
+          <!-- NOTE b is the bananna word for boards inside state.boards, and the key is bannana.id-->
+          <!-- NOTE board-prop is the kabob cased translation of our boardProp inside BoardComponent-->
+          <BoardComponent v-for="b in state.boards" :key="b.id" :board-prop="b">
+            <!-- <div class="col-3 mt-4">
+              <div class="row shadow m-3">
+                <div class="col-12 text-center py-2">
+                  <h3><u>BOARD TITLE</u></h3>
+                  <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-3 mt-4">
-            <div class="row shadow m-3">
-              <div class="col-12 text-center py-2">
-                <h3><u>BOARD TITLE</u></h3>
-                <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
+            <div class="col-3 mt-4">
+              <div class="row shadow m-3">
+                <div class="col-12 text-center py-2">
+                  <h3><u>BOARD TITLE</u></h3>
+                  <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-3 mt-4">
-            <div class="row shadow m-3">
-              <div class="col-12 text-center py-2">
-                <h3><u>BOARD TITLE</u></h3>
-                <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
+            <div class="col-3 mt-4">
+              <div class="row shadow m-3">
+                <div class="col-12 text-center py-2">
+                  <h3><u>BOARD TITLE</u></h3>
+                  <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-3 mt-4">
-            <div class="row shadow m-3">
-              <div class="col-12 text-center py-2">
-                <h3><u>BOARD TITLE</u></h3>
-                <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
+            <div class="col-3 mt-4">
+              <div class="row shadow m-3">
+                <div class="col-12 text-center py-2">
+                  <h3><u>BOARD TITLE</u></h3>
+                  <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
+                </div>
               </div>
-            </div>
-          </div>
-          <!-- BOARD COMPONENTS DRAWS TO THE PAGE HERE -->
+            </div> -->
+            <!-- BOARD COMPONENTS DRAWS TO THE PAGE HERE -->
+          </boardcomponent>
         </div>
       </div>
     </div>
