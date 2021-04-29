@@ -15,6 +15,7 @@ class BoardsService {
 
   async getListsByBoardId(boardId) {
     const res = await api.get(`api/boards/${boardId}/lists`)
+    // NOTE you must now specify which specific object in AppState.lists is being referenced.
     AppState.lists[boardId] = res.data
   }
 

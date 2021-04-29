@@ -4,6 +4,7 @@ const ObjectId = Schema.Types.ObjectId
 
 const List = new Schema(
   {
+    // NOTE key: value
     title: { type: String, required: true },
     creatorId: { type: String, ref: 'Account', required: true },
     boardId: { type: ObjectId, ref: 'Board', required: true }

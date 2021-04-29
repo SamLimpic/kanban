@@ -3,8 +3,8 @@
     <button type="button" class="btn btn-sm btn-outline-danger btn-size btn-overlay p-0">
       <i class="fas fa-times" @click="deleteList(listProp.boardId, listProp.id)"></i>
     </button>
-    <div class="row bg-light shadow m-3">
-      <div class="col-12 text-center bg-white py-2">
+    <div class="row bg-light shadow bg-light m-3">
+      <div class="col-12 text-center bg-secondary py-2">
         <h3>
           <u>{{ listProp.title }}</u>
         </h3>

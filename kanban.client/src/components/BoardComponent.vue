@@ -6,7 +6,7 @@
     <router-link :to="{ name: 'Board', params: { id:boardProp.id } }">
       <!-- ROUTER LINK WRAPPING BOARD -->
       <div class="row bg-light shadow m-3">
-        <div class="col-12 text-center py-2">
+        <div class="col-12 text-center hover-light py-2">
           <h3><u>{{ boardProp.title }}</u></h3>
           <img class="img-fluid mt-1 mb-2" :src="boardProp.imgUrl" alt="">
         </div>
@@ -44,5 +44,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.hover-light{
+  color: var(--dark);
+  transition: all .1s ease-in-out;
+}
+.hover-light:hover{
+  color: var(--info);
+}
 </style>
