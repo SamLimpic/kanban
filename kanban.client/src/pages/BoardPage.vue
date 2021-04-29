@@ -1,17 +1,17 @@
 <template>
   <div class="board-page flex-grow-1 d-flex flex-column">
-    <div class="row justify-content-center" v-if="!state.loading">
-      <div class="col-6 shadow bg-light text-center p-5 m-5" v-if="state.lists[0] == null">
-        <h1>NO LISTS AVAILABLE</h1>
-        <button type="button" class="btn btn-lg btn-info w-25 mx-auto my-5" @click="createList()" title="Create List">
-          CREATE LIST
-        </button>
-      </div>
-      <div class="col-12" v-else>
-        <button type="button" class="btn btn-lg btn-info w-25 mx-auto my-5" @click="createList()" title="Create List">
-          CREATE LIST
-        </button>
+    <div class="row justify-content-center mt-3" v-if="!state.loading">
+      <div class="col-12">
         <div class="row justify-content-center">
+          <div class="col-6 bg-light shadow p-3 text-center">
+            <h1><u>{{ state.activeBoard.title }}</u></h1>
+            <button type="button" class="btn btn-lg btn-info w-25 mx-auto my-5" @click="createList()" title="Create List">
+              CREATE LIST
+            </button>
+          </div>
+        </div>
+
+        <div class="row justify-content-center" v-if="state.lists[0] != null">
           <!-- LIST COMPONENTS DRAWS TO THE PAGE HERE -->
           <ListComponent v-for="l in state.lists" :key="l.id" :list-prop="l" />
         </div>
@@ -40,7 +40,8 @@ export default {
       newList: {},
       // ANCHOR THE BIG CHANGE: specific lists are now values inside the global 'lists' object in the Appstate.
       // ANCHOR those values are keyed to the id of it's parent object (in this case list = boardId)
-      lists: computed(() => AppState.lists[state.boardId])
+      lists: computed(() => AppState.lists[state.boardId]),
+      activeBoard: computed(() => AppState.activeBoard)
     })
     // NOTE changing what was a computed global variabe to a computed section of the variable that only changes when this specific board changes
     // NOTE those changes are tied to the id of this specific board - the lists are noew being defined by thier parent's Ids
@@ -53,6 +54,11 @@ export default {
       try {
         await boardsService.getListsByBoardId(state.boardId)
         state.loading = false
+      } catch (error) {
+        Notification.toast('Error: ', error, 'error')
+      }
+      try {
+        await boardsService.getBoardById(state.boardId)
       } catch (error) {
         Notification.toast('Error: ', error, 'error')
       }

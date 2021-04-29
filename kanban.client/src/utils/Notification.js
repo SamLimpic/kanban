@@ -59,8 +59,10 @@ export default class Notification {
     const { value: body } = await Swal.fire({
       title: title,
       input: 'text',
-      inputPlaceholder: inputPlaceholder
-
+      inputPlaceholder: inputPlaceholder,
+      confirmButtonColor: '#749A63',
+      background: '#FDF9DF',
+      color: '#53443E'
     })
 
     if (body) {

@@ -8,10 +8,10 @@ class BoardsService {
     AppState.boards = res.data
   }
 
-  // async getBoardById(id) {
-  //   const res = await api.get(`api/boards/${id}`)
-  //   AppState.activeBoard = res.data
-  // }
+  async getBoardById(id) {
+    const res = await api.get(`api/boards/${id}`)
+    AppState.activeBoard = res.data
+  }
 
   async getListsByBoardId(boardId) {
     const res = await api.get(`api/boards/${boardId}/lists`)
