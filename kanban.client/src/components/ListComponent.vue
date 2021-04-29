@@ -1,7 +1,8 @@
 <template>
-  <div class="list-component col-3 mt-4 position-relative">
+  <div class="list-component col-3 mt-4 p-0 position-relative" v-if="state.account">
+    <img class="img-icon icon-overlay my-auto" :src="state.account.picture" :title="(state.account.name).split('@')[0]">
     <button type="button" class="btn btn-sm btn-outline-danger btn-size btn-overlay p-0">
-      <i class="fas fa-times" @click="deleteList(listProp.boardId, listProp.id)"></i>
+      <i class="fas fa-times" @click="deleteList(listProp.boardId, listProp.id, listProp.creatorId)"></i>
     </button>
     <div class="row bg-light shadow bg-light m-3">
       <div class="col-12 text-center bg-secondary py-2">
@@ -24,6 +25,7 @@
                    placeholder="Create new task..."
                    minlength="3"
                    maxlength="20"
+                   required
                    v-model="state.newPost.title"
             >
           </div>
@@ -50,7 +52,8 @@ export default {
   setup(props) {
     const state = reactive({
       newPost: {},
-      tasks: computed(() => AppState.tasks[props.listProp.id])
+      tasks: computed(() => AppState.tasks[props.listProp.id]),
+      account: computed(() => AppState.account)
     })
     onMounted(async() => {
       try {
@@ -70,11 +73,20 @@ export default {
           Notification.toast('Error: ', error, 'error')
         }
       },
-      async deleteList(boardId, listId) {
-        try {
-          await listsService.deleteList(boardId, listId)
-        } catch (error) {
-          Notification.toast('Error: ' + error, 'error')
+      async deleteList(boardId, listId, creatorId) {
+        if (AppState.account.id !== creatorId) {
+          Notification.toast("Denied! That's not yours!", 'danger')
+        } else {
+          if (await Notification.confirmAction()) {
+            try {
+              await listsService.deleteList(boardId, listId)
+              Notification.toast('Deleted!', 'warning')
+            } catch (error) {
+              Notification.toast('Error: ' + error, 'error')
+            }
+          } else {
+            Notification.toast('No worries!', 'success')
+          }
         }
       }
     }

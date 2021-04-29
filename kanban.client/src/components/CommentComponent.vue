@@ -2,7 +2,7 @@
   <div class="comment-component row justify-content-end py-1">
     <div class="col-2 my-auto ">
       <button type="button" class="btn btn-sm btn-outline-danger btn-size p-0">
-        <i class="fas fa-times" @click="deleteComment(commentProp.taskId, commentProp.id)"></i>
+        <i class="fas fa-times" @click="deleteComment(commentProp.taskId, commentProp.id, commentProp.creatorId)"></i>
       </button>
     </div>
     <div class="col-8 text-right my-auto p-0">
@@ -36,11 +36,20 @@ export default {
     })
     return {
       state,
-      async deleteComment(taskId, commentId) {
-        try {
-          await commentsService.deleteComment(taskId, commentId)
-        } catch (error) {
-          Notification.toast('Error: ' + error, 'error')
+      async deleteComment(taskId, commentId, creatorId) {
+        if (AppState.account.id !== creatorId) {
+          Notification.toast("Denied! That's not yours!", 'danger')
+        } else {
+          if (await Notification.confirmAction()) {
+            try {
+              await commentsService.deleteComment(taskId, commentId)
+              Notification.toast('Deleted!', 'warning')
+            } catch (error) {
+              Notification.toast('Error: ' + error, 'error')
+            }
+          } else {
+            Notification.toast('No worries!', 'success')
+          }
         }
       }
     }
@@ -50,9 +59,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.img-icon {
-  height: 1.5rem;
-  width: 1.5rem;
-  border-radius: 50%;
-}
+
 </style>

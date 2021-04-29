@@ -51,7 +51,7 @@
               :src="user.picture"
               alt="user photo"
               height="40"
-              class="rounded"
+              class="rounded-circle"
             />
             <span class="mx-3">{{ user.name }}</span>
           </div>
@@ -61,7 +61,7 @@
             @click="state.dropOpen = false"
           >
             <div
-              class="list-group-item list-group-item-action hoverable"
+              class="list-group-item list-group-item-action hoverable bg-light"
               @click="logout"
             >
               logout

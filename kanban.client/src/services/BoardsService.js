@@ -27,10 +27,12 @@ class BoardsService {
 
   async editBoard(boardId, edit) {
     await api.put(`api/boards/${boardId}`, edit)
+    await this.getAllBoards()
   }
 
   async deleteBoard(boardId) {
     await api.delete(`api/boards/${boardId}`)
+    await this.getAllBoards()
   }
 }
 

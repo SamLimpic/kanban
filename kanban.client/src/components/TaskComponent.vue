@@ -1,12 +1,12 @@
 <template>
   <div class="task-component row">
     <!-- TASK DATA -->
-    <div class="col-2 my-auto">
+    <div class="col-2 text-left my-auto">
       <button type="button" class="btn btn-sm btn-outline-danger btn-size p-0">
-        <i class="fas fa-times" @click="deleteTask(taskProp.listId, taskProp.id)"></i>
+        <i class="fas fa-times" @click="deleteTask(taskProp.listId, taskProp.id, taskProp.creatorId)"></i>
       </button>
     </div>
-    <div class="col-8 text-right p-0 my-auto" v-if="state.comments">
+    <div class="col-8 text-left p-0 my-auto" v-if="state.comments">
       <h5 class="m-0 py-1">
         {{ taskProp.title }}
       </h5>
@@ -58,11 +58,20 @@ export default {
           Notification.toast('Error: ', error, 'error')
         }
       },
-      async deleteTask(listId, taskId) {
-        try {
-          await tasksService.deleteTask(listId, taskId)
-        } catch (error) {
-          Notification.toast('Error: ' + error, 'error')
+      async deleteTask(listId, taskId, creatorId) {
+        if (AppState.account.id !== creatorId) {
+          Notification.toast("Denied! That's not yours!", 'danger')
+        } else {
+          if (await Notification.confirmAction()) {
+            try {
+              await tasksService.deleteTask(listId, taskId)
+              Notification.toast('Deleted!', 'warning')
+            } catch (error) {
+              Notification.toast('Error: ' + error, 'error')
+            }
+          } else {
+            Notification.toast('No worries!', 'success')
+          }
         }
       }
     }
