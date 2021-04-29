@@ -1,13 +1,20 @@
 <template>
-  <div class="board-page flex-grow-1 row align-items-center justify-content-center">
-    <div class="col-12 p-5" v-if="!state.loading">
-      <div class="row justify-content-center" v-if="state.lists[0] == null">
-        <div class="col-8 shadow m-3">
-          <h1>NO LISTS AVAILABLE</h1>
-        </div>
+  <div class="board-page flex-grow-1 d-flex flex-column">
+    <div class="row justify-content-center" v-if="!state.loading">
+      <div class="col-6 shadow text-center p-5 m-5" v-if="state.lists[0] == null">
+        <h1>NO LISTS AVAILABLE</h1>
+        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createList()">
+          CREATE LIST
+        </button>
       </div>
-      <div class="row justify-content-center" v-else>
-        <!-- LIST COMPONENTS DRAWS TO THE PAGE HERE -->
+      <div class="col-12" v-else>
+        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createList()">
+          CREATE LIST
+        </button>
+        <div class="row justify-content-center">
+          <!-- LIST COMPONENTS DRAWS TO THE PAGE HERE -->
+          <ListComponent v-for="l in state.lists" :key="l.id" :list-prop="l" />
+        </div>
       </div>
     </div>
     <div class="col-12 text-center p-5" v-else>
@@ -28,14 +35,14 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
+      boardId: route.params.id,
       loading: true,
       newList: {},
-      lists: computed(() => AppState.lists),
-      activeBoard: computed(() => AppState.activeBoard)
+      lists: computed(() => AppState.lists[state.boardId])
     })
     onMounted(async() => {
       try {
-        await boardsService.getListsByBoardId(route.params.id)
+        await boardsService.getListsByBoardId(state.boardId)
         state.loading = false
       } catch (error) {
         Notification.toast('Error: ', error, 'error')
@@ -45,12 +52,14 @@ export default {
       state,
       async createList() {
         try {
-          await listsService.createList(state.newList)
+          await Notification.inputModal('Name your List!', 'List name here...')
+          AppState.newPost.boardId = state.boardId
+          await listsService.createList(state.boardId, AppState.newPost)
         } catch (error) {
           Notification.toast('Error: ', error, 'error')
         }
       },
-      account: computed(() => AppState.account)
+      user: computed(() => AppState.user)
     }
   }
 }

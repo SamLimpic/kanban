@@ -8,31 +8,28 @@ class BoardsService {
     AppState.boards = res.data
   }
 
-  async getBoardById(id) {
-    const res = await api.get(`api/boards/${id}`)
-    AppState.activeBoard = res.data
-  }
+  // async getBoardById(id) {
+  //   const res = await api.get(`api/boards/${id}`)
+  //   AppState.activeBoard = res.data
+  // }
 
-  async getListsByBoardId(id) {
-    const res = await api.get(`api/boards/${id}/lists`)
-    AppState.lists = res.data
+  async getListsByBoardId(boardId) {
+    const res = await api.get(`api/boards/${boardId}/lists`)
+    AppState.lists[boardId] = res.data
   }
 
   async createBoard(data) {
     const res = await api.post('api/boards', data)
     AppState.boards.push(res.data)
-    router.push({ name: 'BoardPage', params: { id: res.data.id } })
+    router.push({ name: 'Board', params: { id: res.data.id } })
   }
 
-  async editBoard(id, edit) {
-    const res = await api.put(`api/boards/${id}`, edit)
-    AppState.activeBoard = res.data
-    // this.getBoardById(res.data.id)
+  async editBoard(boardId, edit) {
+    await api.put(`api/boards/${boardId}`, edit)
   }
 
-  async deleteBoard(id) {
-    await api.delete(`api/boards/${id}`)
-    AppState.boards = AppState.boards.filter(board => board.id !== id)
+  async deleteBoard(boardId) {
+    await api.delete(`api/boards/${boardId}`)
   }
 }
 

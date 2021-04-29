@@ -73,7 +73,7 @@ TASK CONTROLLER <!-- SECTION -->
 ``` JS
   async editTask(req, res, next) {
     try {
-      req.body.creatorId == req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       req.body.id = req.params.id
       // NOTE Prevents comments from overwriting itself when not being directly manipulated
       delete.req.body.comments

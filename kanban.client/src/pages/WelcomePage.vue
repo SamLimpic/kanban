@@ -8,45 +8,19 @@
     <div class="row justify-content-center" v-else>
       <div class="col-6 shadow text-center p-5 m-5" v-if="state.boards[0] == null">
         <h1>NO BOARDS!  GET STARTED!</h1>
-        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5">
+        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createBoard">
           CREATE BOARD
         </button>
       </div>
       <div class="col-10 mt-3" v-else>
-        <div class="row justify-content-around">
-          <!-- {{ state.boards }} -->
-          <div class="col-3 mt-4">
-            <div class="row shadow m-3">
-              <div class="col-12 text-center py-2">
-                <h3><u>BOARD TITLE</u></h3>
-                <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="col-3 mt-4">
-            <div class="row shadow m-3">
-              <div class="col-12 text-center py-2">
-                <h3><u>BOARD TITLE</u></h3>
-                <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="col-3 mt-4">
-            <div class="row shadow m-3">
-              <div class="col-12 text-center py-2">
-                <h3><u>BOARD TITLE</u></h3>
-                <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="col-3 mt-4">
-            <div class="row shadow m-3">
-              <div class="col-12 text-center py-2">
-                <h3><u>BOARD TITLE</u></h3>
-                <img class="img-fluid mt-1 mb-2" src="http://www.fillmurray.com/300/300" alt="">
-              </div>
-            </div>
-          </div>
+        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createBoard">
+          CREATE BOARD
+        </button>
+        <div class="row justify-content-around" v-if="state.boards">
+          <!-- NOTE BoardComponent is the name of the component page -->
+          <!-- NOTE b is the bananna word for boards inside state.boards, and the key is bannana.id-->
+          <!-- NOTE board-prop is the kabob cased translation of our boardProp inside BoardComponent-->
+          <BoardComponent v-for="b in state.boards" :key="b.id" :board-prop="b" />
           <!-- BOARD COMPONENTS DRAWS TO THE PAGE HERE -->
         </div>
       </div>
@@ -65,7 +39,6 @@ export default {
   setup() {
     const state = reactive({
       loading: true,
-      newBoard: {},
       boards: computed(() => AppState.boards),
       user: computed(() => AppState.user)
     })
@@ -81,7 +54,8 @@ export default {
       state,
       async createBoard() {
         try {
-          await boardsService.createBoard(state.newBoard)
+          await Notification.inputModal('Name your Board!', 'Board name here...')
+          await boardsService.createBoard(AppState.newPost)
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }

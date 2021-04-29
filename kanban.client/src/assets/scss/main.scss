@@ -21,3 +21,16 @@ main {
   display: flex;
   align-items: stretch;
 }
+
+.btn-overlay {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  z-index: 10;
+}
+
+.btn-size {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+}
