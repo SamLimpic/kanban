@@ -31,19 +31,6 @@ Task.post('find', async function(docs) {
   }
 })
 
-
-
-// LINK This would go in the Board model, linking to the following function in its child element
-// LINK This function goes in the Parent, triggered by deleting a single board.  It takes the Id of that board, and sends it off to the Child function.
-Board.post('findOneAndDelete', async function(doc) {
-  await dbContext.Lists.deleteMany({boardId: doc.id})
-})
-
-// LINK This would go in the List model.  It goes in the Child, activated by the Parent function.  It finds all Lists with a boardId that matches the Id of the Parent board when that board is deleted.
-List.post('deleteMany', async function(docs))
-
-
-
 // NOTE Subdocs get their own Schema and Virtual *if required) declared inside the Parent Model, above the Parent Schema
 
 const Task = new Schema(
@@ -65,6 +52,18 @@ Task.virtual('creator', {
 })
 
 export default Task
+
+
+// SECTION Code required to initiate a Cascading Deletion, deleting all the Child elements contained in a Parent element when that Parent is deleted.
+// NOTE This would go in the Board model, linking to the following function in its child element
+// LINK This function goes in the Parent, triggered by deleting a single board.  It takes the Id of that board, and sends it off to the Child function.
+Board.post('findOneAndDelete', async function(doc) {
+  await dbContext.Lists.deleteMany({boardId: doc.id})
+})
+
+// LINK This would go in the List model.  It goes in the Child, activated by the Parent function.  It finds all Lists with a boardId that matches the Id of the Parent board when that board is deleted.
+List.post('deleteMany', async function(docs))
+
 ```
 
 
