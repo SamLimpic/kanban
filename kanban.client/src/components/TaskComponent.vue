@@ -6,7 +6,7 @@
         <i class="fas fa-times" @click="deleteTask(taskProp.listId, taskProp.id)"></i>
       </button>
     </div>
-    <div class="col-8 text-left p-0 my-auto" v-if="state.comments">
+    <div class="col-8 text-right p-0 my-auto" v-if="state.comments">
       <h5 class="m-0 py-1">
         {{ taskProp.title }}
       </h5>
