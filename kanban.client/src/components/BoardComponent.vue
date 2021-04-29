@@ -1,15 +1,15 @@
 <template>
   <div class="board-component col-3 p-0 position-relative" v-if="state.account">
     <img class="img-icon icon-overlay my-auto" :src="state.account.picture" :title="(state.account.name).split('@')[0]">
-    <button type="button" class="btn btn-sm btn-outline-danger btn-size btn-overlay p-0">
+    <button type="button" class="btn btn-sm btn-outline-danger btn-size btn-overlay p-0" title="Delete Board">
       <i class="fas fa-times" @click="deleteBoard(boardProp.id, boardProp.creatorId)"></i>
     </button>
     <router-link :to="{ name: 'Board', params: { id:boardProp.id } }">
       <!-- ROUTER LINK WRAPPING BOARD -->
       <div class="row bg-light shadow m-3">
-        <div class="col-12 text-center hover-light">
+        <div class="col-12 text-center hover-light" title="Navigate into Board">
           <h3><u>{{ boardProp.title }}</u></h3>
-          <img class="img-fluid mt-1 mb-2 pb-2" :src="boardProp.imgUrl" alt="">
+          <img class="img-fluid w-100 px-3 py-4" :src="boardProp.imgUrl" alt="" title="Mr. Bill Murray">
         </div>
       </div>
       <!-- ROUTER LINK WRAPPING BOARD -->

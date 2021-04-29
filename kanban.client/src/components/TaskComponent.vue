@@ -2,7 +2,7 @@
   <div class="task-component row">
     <!-- TASK DATA -->
     <div class="col-2 text-left my-auto">
-      <button type="button" class="btn btn-sm btn-outline-danger btn-size p-0">
+      <button type="button" class="btn btn-sm btn-outline-danger btn-size p-0" title="Delete Task">
         <i class="fas fa-times" @click="deleteTask(taskProp.listId, taskProp.id, taskProp.creatorId)"></i>
       </button>
     </div>
@@ -13,7 +13,7 @@
       <!-- Comment component renders here  -->
     </div>
     <div class="col-2 my-auto">
-      <button type="button" class="btn btn-sm btn-outline-success btn-size p-0">
+      <button type="button" class="btn btn-sm btn-outline-success btn-size p-0" title="Create Comment">
         <i class="fas fa-plus" @click="createComment(taskProp.id)"></i>
       </button>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="list-component col-3 mt-4 p-0 position-relative" v-if="state.account">
     <img class="img-icon icon-overlay my-auto" :src="state.account.picture" :title="(state.account.name).split('@')[0]">
-    <button type="button" class="btn btn-sm btn-outline-danger btn-size btn-overlay p-0">
+    <button type="button" class="btn btn-sm btn-outline-danger btn-size btn-overlay p-0" title="Delete List">
       <i class="fas fa-times" @click="deleteList(listProp.boardId, listProp.id, listProp.creatorId)"></i>
     </button>
     <div class="row bg-light shadow bg-light m-3">
@@ -16,7 +16,7 @@
         <form @submit.prevent="createTask(listProp.id)">
           <div class="input group input-group input-group-sm pb-2 pt-3 w-75 mx-auto">
             <div class="input-group-prepend">
-              <button class="btn btn-outline-success px-2" type="submit">
+              <button class="btn btn-outline-success px-2" type="submit" title="Create Task">
                 <i class="fas fa-plus"></i>
               </button>
             </div>

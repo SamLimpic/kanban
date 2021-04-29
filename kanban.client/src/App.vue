@@ -2,12 +2,12 @@
   <header>
     <Navbar />
   </header>
-  <main class="text-dark">
+  <main class="">
     <router-view :key="$route.fullPath" />
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
-      2021, Samaredonica Inc.
+    <div class="bg-dark text-light text-center pt-4 pb-3">
+      <h5>2021, Samaredonica Inc.</h5>
     </div>
   </footer>
 </template>

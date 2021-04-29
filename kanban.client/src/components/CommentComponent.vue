@@ -1,7 +1,7 @@
 <template>
   <div class="comment-component row justify-content-end py-1">
     <div class="col-2 my-auto ">
-      <button type="button" class="btn btn-sm btn-outline-danger btn-size p-0">
+      <button type="button" class="btn btn-sm btn-outline-danger btn-size p-0" title="Delete Comment">
         <i class="fas fa-times" @click="deleteComment(commentProp.taskId, commentProp.id, commentProp.creatorId)"></i>
       </button>
     </div>

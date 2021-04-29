@@ -3,12 +3,12 @@
     <div class="row justify-content-center" v-if="!state.loading">
       <div class="col-6 shadow bg-light text-center p-5 m-5" v-if="state.lists[0] == null">
         <h1>NO LISTS AVAILABLE</h1>
-        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createList()">
+        <button type="button" class="btn btn-lg btn-info w-25 mx-auto my-5" @click="createList()" title="Create List">
           CREATE LIST
         </button>
       </div>
       <div class="col-12" v-else>
-        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createList()">
+        <button type="button" class="btn btn-lg btn-info w-25 mx-auto my-5" @click="createList()" title="Create List">
           CREATE LIST
         </button>
         <div class="row justify-content-center">

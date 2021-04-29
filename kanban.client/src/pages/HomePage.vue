@@ -4,7 +4,7 @@
       <div class="col-6 shadow bg-light text-center p-5 m-5">
         <h1>WELCOME TO KANBAN</h1>
         <router-link :to="{name: 'Welcome'}">
-          <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5">
+          <button type="button" class="btn btn-lg btn-info w-25 mx-auto my-5" title="View Boards">
             VIEW YOUR BOARDS
           </button>
         </router-link>
