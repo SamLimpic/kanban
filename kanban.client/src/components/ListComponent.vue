@@ -1,17 +1,19 @@
 <template>
   <div class="list-component col-3 mt-4 position-relative">
-    <button type="button" class="btn btn-sm btn-outline-danger delete-overlay m-0 p-0">
-      <i class="fas fa-times" @click="deleteList(listProp.id)"></i>
+    <button type="button" class="btn btn-sm btn-outline-danger btn-size btn-overlay p-0">
+      <i class="fas fa-times" @click="deleteList(listProp.boardId, listProp.id)"></i>
     </button>
-    <div class="row shadow m-3">
-      <div class="col-12 text-center py-2">
+    <div class="row bg-light shadow m-3">
+      <div class="col-12 text-center bg-white py-2">
         <h3>
           <u>{{ listProp.title }}</u>
         </h3>
+      </div>
+      <div class="col-12 p-2 px-3">
         <!-- NOTE render taskComponent -->
-
+        <TaskComponent v-for="t in state.tasks" :key="t.id" :task-prop="t" />
         <form @submit.prevent="createTask(listProp.id)">
-          <div class="input group input-group">
+          <div class="input group input-group input-group-sm pb-2 pt-3 w-75 mx-auto">
             <div class="input-group-prepend">
               <button class="btn btn-outline-success px-2" type="submit">
                 <i class="fas fa-plus"></i>
@@ -26,9 +28,6 @@
             >
           </div>
         </form>
-        <div v-if="state.activeTasks[0] != null">
-          <TaskComponent v-for="t in state.activeTasks" :key="t.id" :task-prop="t" />
-        </div>
       </div>
     </div>
   </div>
@@ -51,37 +50,29 @@ export default {
   setup(props) {
     const state = reactive({
       newPost: {},
-      activeTasks: [],
-      tasks: computed(() => AppState.tasks)
+      tasks: computed(() => AppState.tasks[props.listProp.id])
     })
     onMounted(async() => {
       try {
         await listsService.getTasksByListId(props.listProp.id)
-        state.activeTasks = state.tasks
       } catch (error) {
         Notification.toast('Error: ', error, 'error')
       }
     })
     return {
       state,
-      async createTask(id) {
+      async createTask(listId) {
         try {
-          state.newPost.listId = id
-          state.tasks = state.activeTasks
-          await tasksService.createTask(state.newPost)
-          state.activeTasks = state.tasks
+          state.newPost.listId = listId
+          await tasksService.createTask(listId, state.newPost)
           state.newPost = {}
-          location.reload()
         } catch (error) {
           Notification.toast('Error: ', error, 'error')
         }
       },
-      async deleteList(id) {
+      async deleteList(boardId, listId) {
         try {
-          state.tasks = state.activeTasks
-          await listsService.deleteList(id)
-          state.activeTasks = state.tasks
-          location.reload()
+          await listsService.deleteList(boardId, listId)
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }

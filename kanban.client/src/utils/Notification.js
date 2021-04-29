@@ -58,6 +58,7 @@ export default class Notification {
       title: title,
       input: 'text',
       inputPlaceholder: inputPlaceholder
+
     })
 
     if (body) {

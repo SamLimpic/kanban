@@ -2,30 +2,29 @@ import { AppState } from '../AppState'
 import { api } from './AxiosService'
 
 class ListsService {
-  async getListById(id) {
-    const res = await api.get(`api/lists/${id}`)
-    AppState.activeList = res.data
+  // async getListById(id) {
+  //   const res = await api.get(`api/lists/${id}`)
+  //   AppState.activeList = res.data
+  // }
+
+  async getTasksByListId(listId) {
+    const res = await api.get(`api/lists/${listId}/tasks`)
+    AppState.tasks[listId] = res.data
   }
 
-  async getTasksByListId(id) {
-    const res = await api.get(`api/lists/${id}/tasks`)
-    AppState.tasks = res.data
-  }
-
-  async createList(data) {
+  async createList(boardId, data) {
     const res = await api.post('api/lists', data)
-    AppState.lists.push(res.data)
+    AppState.lists[boardId].push(res.data)
   }
 
-  async editList(id, edit) {
-    const res = await api.put(`api/lists/${id}`, edit)
-    AppState.activeList = res.data
-    // this.getListById(res.data.id)
+  async editList(boardId, listId, edit) {
+    const res = await api.put(`api/lists/${listId}`, edit)
+    AppState.lists[boardId] = res.data
   }
 
-  async deleteList(id) {
-    await api.delete(`api/lists/${id}`)
-    AppState.lists = AppState.lists.filter(list => list.id !== id)
+  async deleteList(boardId, listId) {
+    await api.delete(`api/lists/${listId}`)
+    AppState.lists[boardId] = AppState.lists[boardId].filter(list => list.id !== listId)
   }
 }
 

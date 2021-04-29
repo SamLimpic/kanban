@@ -3,15 +3,15 @@
     <div class="row justify-content-center" v-if="!state.loading">
       <div class="col-6 shadow text-center p-5 m-5" v-if="state.lists[0] == null">
         <h1>NO LISTS AVAILABLE</h1>
-        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createList">
+        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createList()">
           CREATE LIST
         </button>
       </div>
       <div class="col-12" v-else>
-        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createList">
+        <button type="button" class="btn btn-lg btn-outline-info w-25 mx-auto my-5" @click="createList()">
           CREATE LIST
         </button>
-        <div class="row justify-content-around" v-if="state.lists">
+        <div class="row justify-content-center">
           <!-- LIST COMPONENTS DRAWS TO THE PAGE HERE -->
           <ListComponent v-for="l in state.lists" :key="l.id" :list-prop="l" />
         </div>
@@ -35,14 +35,14 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
+      boardId: route.params.id,
       loading: true,
       newList: {},
-      lists: computed(() => AppState.lists),
-      activeBoard: computed(() => AppState.activeBoard)
+      lists: computed(() => AppState.lists[state.boardId])
     })
     onMounted(async() => {
       try {
-        await boardsService.getListsByBoardId(route.params.id)
+        await boardsService.getListsByBoardId(state.boardId)
         state.loading = false
       } catch (error) {
         Notification.toast('Error: ', error, 'error')
@@ -53,13 +53,13 @@ export default {
       async createList() {
         try {
           await Notification.inputModal('Name your List!', 'List name here...')
-          AppState.newPost.boardId = route.params.id
-          await listsService.createList(AppState.newPost)
+          AppState.newPost.boardId = state.boardId
+          await listsService.createList(state.boardId, AppState.newPost)
         } catch (error) {
           Notification.toast('Error: ', error, 'error')
         }
       },
-      account: computed(() => AppState.account)
+      user: computed(() => AppState.user)
     }
   }
 }
