@@ -17,7 +17,7 @@
         <div class="dropdown-menu bg-secondary py-0 p-2" aria-labelledby="dropdownMenuButton">
           <CommentComponent v-for="c in state.comments" :key="c.id" :comment-prop="c" />
           <div class="dropdown-divider p-0 m-0"></div>
-          <button type="button" class="btn btn-warning w-100 p-0 m-0" title="Add Comment" @click="createComment(taskProp.id)">
+          <button type="button" class="btn btn-success w-100 p-0 m-0" title="Add Comment" @click="createComment(taskProp.id)">
             Add comment
           </button>
         </div>
