@@ -19,9 +19,7 @@
       <div class="col-md-6 col-10 shadow bg-light text-center p-3 m-md-4 my-md-3 my-4">
         <h1>Log in to view your Bill Boards</h1>
         <!-- <img class="img-fluid my-4" src="http://www.fillmurray.com/400/400" alt="" title="Mr. Bill Murray"> -->
-        <div class="col-12 text-center m-md-4 my-4 m-0">
-          <h1><i class="fas fa-clipboard-check fa-spin text-info"></i></h1>
-        </div>
+        <h1><i class="fas fa-clipboard-check fa-spin text-info text-center m-md-4 my-4 m-0"></i></h1>
       </div>
     </div>
   </div>
