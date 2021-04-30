@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
           <div class="col-md-6 col-10">
             <router-link :to="{name: 'Welcome'}">
-              <button type="button" class="btn btn-lg btn-info mx-auto text-light mt-md-2 mt-3 mb-md-2" title="View Boards">
+              <button type="button" class="btn btn-lg btn-dark mx-auto text-light mt-md-2 mt-3 mb-md-2" title="View Boards">
                 VIEW YOUR BOARDS
               </button>
             </router-link>

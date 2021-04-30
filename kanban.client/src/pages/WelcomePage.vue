@@ -8,7 +8,7 @@
     <div class="row justify-content-center" v-else>
       <div class="col-md-6 col-10 shadow bg-light text-center p-3 m-md-4 my-md-3 my-4" v-if="state.boards[0] == null">
         <h1>You don't have any Bill Boards!</h1>
-        <button type="button" class="btn btn-lg btn-info text-light w-25 mx-auto my-2" @click="createBoard" title="Create Board">
+        <button type="button" class="btn btn-lg btn-dark text-light w-25 mx-auto my-2" @click="createBoard" title="Create Board">
           CREATE BOARD
         </button>
       </div>
@@ -16,7 +16,7 @@
         <div class="row justify-content-center">
           <div class="col-md-6 col-10 bg-light shadow text-center p-3 m-md-4 my-md-3 my-4">
             <h1>Here are your Bill Boards!</h1>
-            <button type="button" class="btn btn-lg btn-info text-light mt-3 mb-2" @click="createBoard" title="Create Board">
+            <button type="button" class="btn btn-lg btn-dark text-light mt-3 mb-2" @click="createBoard" title="Create Board">
               CREATE BOARD
             </button>
           </div>

@@ -30,8 +30,8 @@ class BoardsService {
     return data
   }
 
-  async delete(id) {
-    const data = await dbContext.Boards.findOneAndDelete({ _id: id })
+  async delete(id, creatorId) {
+    const data = await dbContext.Boards.findOneAndDelete({ _id: id, creatorId })
     if (!data) {
       throw new BadRequest('Invalid Id')
     }

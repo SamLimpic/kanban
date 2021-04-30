@@ -19,7 +19,7 @@ export class BoardsController extends BaseController {
 
   async getAllBoards(req, res, next) {
     try {
-      const boards = await boardsService.find(req.query)
+      const boards = await boardsService.find({ ...req.query, creatorId: req.userInfo.id })
       // NOTE query may not be required
       return res.send(boards)
     } catch (error) {
@@ -70,7 +70,7 @@ export class BoardsController extends BaseController {
 
   async deleteBoard(req, res, next) {
     try {
-      const data = await boardsService.delete(req.params.id)
+      const data = await boardsService.delete(req.params.id, req.userInfo.id)
       return res.send(data)
     } catch (error) {
       next(error)

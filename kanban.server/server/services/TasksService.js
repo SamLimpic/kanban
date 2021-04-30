@@ -26,8 +26,8 @@ class TasksService {
     return data
   }
 
-  async delete(id) {
-    const data = await dbContext.Tasks.findOneAndDelete({ _id: id })
+  async delete(id, creatorId) {
+    const data = await dbContext.Tasks.findOneAndDelete({ _id: id, creatorId })
     if (!data) {
       throw new BadRequest('Invalid Id')
     }

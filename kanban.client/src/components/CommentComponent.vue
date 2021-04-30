@@ -29,7 +29,7 @@ export default {
       state,
       async deleteComment(taskId, commentId, creatorId) {
         if (AppState.account.id !== creatorId) {
-          Notification.toast("Denied! That's not yours!", 'danger')
+          Notification.toast("Denied! That's not yours!", 'error')
         } else {
           if (await Notification.confirmAction()) {
             try {

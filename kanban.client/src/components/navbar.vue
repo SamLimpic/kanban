@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
+      <div class="d-flex flex-column align-items-center text-light">
         <h1><span><i class="fas fa-clipboard-check text-info px-1"></i></span> Bill Boards</h1>
       </div>
     </router-link>
@@ -19,12 +19,12 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link">
+          <router-link :to="{ name: 'Home' }" class="nav-link text-light">
             Home
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'Welcome' }" class="nav-link">
+          <router-link :to="{ name: 'Welcome' }" class="nav-link text-light">
             All Boards
           </router-link>
         </li>
@@ -49,7 +49,7 @@
               height="40"
               class="rounded-circle"
             />
-            <span class="mx-3">{{ user.name }}</span>
+            <span class="mx-3 text-light">{{ user.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
