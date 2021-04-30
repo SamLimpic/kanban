@@ -20,6 +20,9 @@ class BoardsService {
   }
 
   async createBoard(data) {
+    const bill = Math.floor(Math.random() * 6 + 3)
+    const murray = Math.floor(Math.random() * 6 + 3)
+    data.imgUrl = `http://www.fillmurray.com/${bill}${murray}0/${bill}${murray}0`
     const res = await api.post('api/boards', data)
     AppState.boards.push(res.data)
     router.push({ name: 'Board', params: { id: res.data.id } })

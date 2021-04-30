@@ -8,10 +8,11 @@ import { reactive } from 'vue'
 // NOTE each collection is identified by the ID of it's parent element
 export const AppState = reactive({
   user: {},
-  account: {},
+  account: null,
   activeBoard: null,
   boards: [],
   lists: {},
+  activeTask: null,
   tasks: {},
   comments: {},
   newPost: {}

@@ -1,28 +1,28 @@
 <template>
-  <div class="welcome-page flex-grow-1 d-flex flex-column">
+  <div class="welcome-page container">
     <div class="row justify-content-center" v-if="state.loading">
-      <div class="col-12 text-center p-5 m-5">
-        <h1><i class="fas fa-clipboard-check fa-spin px-1 text-info"></i></h1>
+      <div class="col-12 text-center p-3 m-md-4 my-md-3 my-4">
+        <h1><i class="fas fa-clipboard-check fa-spin text-info"></i></h1>
       </div>
     </div>
     <div class="row justify-content-center" v-else>
-      <div class="col-6 shadow bg-light text-center p-5 m-5" v-if="state.boards[0] == null">
-        <h1>NO BOARDS!  GET STARTED!</h1>
-        <button type="button" class="btn btn-lg btn-info text-light w-25 mx-auto my-5" @click="createBoard" title="Create Board">
+      <div class="col-md-6 col-10 shadow bg-light text-center p-3 m-md-4 my-md-3 my-4" v-if="state.boards[0] == null">
+        <h1>You don't have any Bill Boards!</h1>
+        <button type="button" class="btn btn-lg btn-info text-light w-25 mx-auto my-2" @click="createBoard" title="Create Board">
           CREATE BOARD
         </button>
       </div>
-      <div class="col-10 mt-3" v-else>
+      <div class="col-12 mb-4" v-else>
         <div class="row justify-content-center">
-          <div class="col-6 bg-light shadow p-3 text-center">
-            <h1><u>Here are your Boards! Want Another?</u></h1>
-            <button type="button" class="btn btn-lg btn-info text-light my-2" @click="createBoard" title="Create Board">
+          <div class="col-md-6 col-10 bg-light shadow text-center p-3 m-md-4 my-md-3 my-4">
+            <h1><u>Here are your Bill Boards!</u></h1>
+            <button type="button" class="btn btn-lg btn-info text-light mt-3 mb-2" @click="createBoard" title="Create Board">
               CREATE BOARD
             </button>
           </div>
         </div>
 
-        <div class="row justify-content-around" v-if="state.boards[0] != null">
+        <div class="row justify-content-center">
           <!-- NOTE BoardComponent is the name of the component page -->
           <!-- NOTE b is the bananna word for boards inside state.boards, and the key is bannana.id-->
           <!-- NOTE board-prop is the kabob cased translation of our boardProp inside BoardComponent-->
@@ -63,7 +63,7 @@ export default {
           await Notification.inputModal('Name your Board!', 'Board name here...')
           await boardsService.createBoard(AppState.newPost)
         } catch (error) {
-          Notification.toast('Error: ' + error, 'error')
+          Notification.toast('Input cancelled!', 'warning')
         }
       }
     }

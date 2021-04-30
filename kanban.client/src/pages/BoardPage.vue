@@ -1,11 +1,11 @@
 <template>
-  <div class="board-page flex-grow-1 d-flex flex-column">
-    <div class="row justify-content-center mt-3" v-if="!state.loading">
-      <div class="col-12">
+  <div class="board-page container">
+    <div class="row justify-content-center mb-2">
+      <div class="col-12" v-if="!state.loading && state.activeBoard">
         <div class="row justify-content-center">
-          <div class="col-6 bg-light shadow p-3 text-center">
-            <h1><u>{{ state.activeBoard.title }}</u></h1>
-            <button type="button" class="btn btn-lg btn-info w-25 mx-auto my-5" @click="createList()" title="Create List">
+          <div class="col-md-6 col-10 bg-light shadow p-3 m-md-4 my-md-3 my-3 mt-4 text-center">
+            <h1>Current Board: <u>{{ state.activeBoard.title }}</u></h1>
+            <button type="button" class="btn btn-lg btn-info mt-3 mb-2" @click="createList()" title="Create List">
               CREATE LIST
             </button>
           </div>
@@ -16,9 +16,9 @@
           <ListComponent v-for="l in state.lists" :key="l.id" :list-prop="l" />
         </div>
       </div>
-    </div>
-    <div class="col-12 text-center p-5" v-else>
-      <h1><i class="fas fa-circle-notch fa-spin text-info"></i></h1>
+      <div class="col-12 text-center  p-3 m-md-4 my-md-3 my-4" v-else>
+        <h1><i class="fas fa-circle-notch fa-spin text-info"></i></h1>
+      </div>
     </div>
   </div>
 </template>
@@ -68,8 +68,12 @@ export default {
       async createList() {
         try {
           await Notification.inputModal('Name your List!', 'List name here...')
-          AppState.newPost.boardId = state.boardId
-          await listsService.createList(state.boardId, AppState.newPost)
+          if (AppState.newPost.length > 20) {
+            Notification.toast(`That's ${AppState.newPost.length - 20} too many characters!`, 'error')
+          } else {
+            AppState.newPost.boardId = state.boardId
+            await listsService.createList(state.boardId, AppState.newPost)
+          }
         } catch (error) {
           Notification.toast('Error: ', error, 'error')
         }

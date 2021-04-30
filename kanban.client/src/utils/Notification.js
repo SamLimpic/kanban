@@ -21,8 +21,7 @@ export default class Notification {
         confirmButtonColor: '#749A63',
         cancelButtonColor: '#B1453B',
         confirmButtonText: confirmButtonText,
-        background: '#FDF9DF',
-        color: '#53443E'
+        background: '#FDF9DF'
       })
       if (res.isConfirmed) {
         return true
@@ -61,12 +60,13 @@ export default class Notification {
       input: 'text',
       inputPlaceholder: inputPlaceholder,
       confirmButtonColor: '#749A63',
-      background: '#FDF9DF',
-      color: '#53443E'
+      background: '#FDF9DF'
     })
 
     if (body) {
-      AppState.newPost = { title: `${body}` }
+      AppState.newPost = {
+        title: `${body}`
+      }
     }
   }
 

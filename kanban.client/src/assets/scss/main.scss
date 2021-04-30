@@ -24,26 +24,42 @@ main {
 
 .btn-overlay {
   position: absolute;
-  top: 2rem;
-  right: 3rem;
+  top: 1rem;
+  right: 1rem;
   z-index: 10;
 }
 
 .btn-size {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2rem;
+  width: 2rem;
   border-radius: 50%;
 }
 
+.btn-task-overlay {
+  position: absolute;
+  right: 1.15rem;
+  top: -1rem;
+}
+
 .img-icon {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2rem;
+  width: 2rem;
   border-radius: 50%;
 }
 
 .icon-overlay {
   position: absolute;
-  top: 2rem;
-  left: 3rem;
+  top: 1rem;
+  left: 1rem;
   z-index: 10;
+}
+
+.fa-2 {
+  font-size: 1.5rem;
+}
+
+.btn-task {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
 }

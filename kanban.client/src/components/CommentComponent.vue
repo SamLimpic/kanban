@@ -1,19 +1,22 @@
 <template>
-  <div class="comment-component row justify-content-end py-1">
-    <div class="col-2 my-auto ">
+  <!-- <div class="comment-component row justify-content-end py-1"> -->
+  <!-- <div class="col-2 my-auto ">
       <button type="button" class="btn btn-sm btn-outline-danger btn-size p-0" title="Delete Comment">
         <i class="fas fa-times" @click="deleteComment(commentProp.taskId, commentProp.id, commentProp.creatorId)"></i>
       </button>
     </div>
-    <div class="col-8 text-right my-auto p-0">
-      <p class="m-0 p-0">
-        <i>{{ commentProp.title }}</i>
-      </p>
-    </div>
+    <div class="col-8 text-right my-auto p-0"> -->
+  <!-- <a class="m-0 p-0"> -->
+  <a class="dropdown-item bg-transparent px-2"><span><button type="button" class="btn btn-sm btn-outline-danger btn-size p-0" title="Delete Comment">
+    <i class="fas fa-times" @click="deleteComment(commentProp.taskId, commentProp.id, commentProp.creatorId)"></i>
+  </button></span><span><img class="btn-size mx-2" :src="state.account.picture" :title="(state.account.name).split('@')[0]"></span><i>{{ commentProp.title }}</i></a>
+  <!-- </a> -->
+  <!-- </div>
     <div class="col-2 my-auto">
       <img class="img-icon" :src="state.account.picture" :title="(state.account.name).split('@')[0]">
     </div>
-  </div>
+  </div> -->
+  <!-- </div> -->
 </template>
 
 <script>
@@ -59,5 +62,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.btn-size {
+  height: 1.5rem;
+  width: 1.5rem;
+}
 
 </style>
