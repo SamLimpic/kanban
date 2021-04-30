@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <h1><span><i class="fas fa-clipboard-check px-1"></i></span> Bill Boards</h1>
+        <h1><span><i class="fas fa-clipboard-check text-info px-1"></i></span> Bill Boards</h1>
       </div>
     </router-link>
     <button

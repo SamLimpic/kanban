@@ -1,10 +1,10 @@
 <template>
   <div class="list-component col-md-3 col-10 m-3" v-if="state.account != null">
     <div class="row bg-light shadow bg-light position-relative">
-      <button type="button" class="btn btn-sm btn-outline-success btn-size icon-overlay p-0" title="Add Task">
+      <button type="button" class="btn btn-sm btn-success btn-size icon-overlay p-0" title="Add Task">
         <i class="fas fa-plus" @click="createTask(listProp.id)"></i>
       </button>
-      <button type="button" class="btn btn-sm btn-outline-danger btn-size btn-overlay p-0" title="Delete List">
+      <button type="button" class="btn btn-sm btn-danger btn-size btn-overlay p-0" title="Delete List">
         <i class="fas fa-times" @click="deleteList(listProp.boardId, listProp.id, listProp.creatorId)"></i>
       </button>
       <div class="col-12 text-center bg-secondary pt-2 pb-3">

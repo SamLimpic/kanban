@@ -1,7 +1,7 @@
 <template>
   <div class="board-component col-md-3 col-10 m-3 position-relative" v-if="state.account != null">
     <img class="img-icon icon-overlay my-auto" :src="state.account.picture" :title="(state.account.name).split('@')[0]">
-    <button type="button" class="btn btn-sm btn-outline-danger btn-size btn-overlay p-0" title="Delete Board">
+    <button type="button" class="btn btn-sm btn-danger btn-size btn-overlay p-0" title="Delete Board">
       <i class="fas fa-times" @click="deleteBoard(boardProp.id, boardProp.creatorId)"></i>
     </button>
     <router-link :to="{ name: 'Board', params: { id:boardProp.id } }">

@@ -14,7 +14,7 @@
           <i class="far fa-comment-dots text-info fa-2" v-if="state.comments[0]"></i>
           <i class="far fa-comment-dots fa-2" v-else></i>
         </button>
-        <div class="dropdown-menu bg-secondary py-0" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu bg-secondary py-0 p-2" aria-labelledby="dropdownMenuButton">
           <CommentComponent v-for="c in state.comments" :key="c.id" :comment-prop="c" />
           <div class="dropdown-divider p-0 m-0"></div>
           <button type="button" class="btn btn-warning w-100 p-0 m-0" title="Add Comment" @click="createComment(taskProp.id)">
@@ -34,7 +34,7 @@
       </button>
     </div> -->
     <div class="col-2 my-auto">
-      <button type="button" class="btn btn-sm btn-outline-danger btn-task btn-task-overlay p-0" title="Delete Task">
+      <button type="button" class="btn btn-sm btn-danger btn-task btn-task-overlay p-0" title="Delete Task">
         <i class="fas fa-times" @click="deleteTask(taskProp.listId, taskProp.id, taskProp.creatorId)"></i>
       </button>
     </div>
