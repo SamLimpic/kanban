@@ -11,10 +11,10 @@
                 aria-haspopup="true"
                 aria-expanded="false"
         >
-          <i class="far fa-comment-dots text-info fa-2" v-if="state.comments[0]"></i>
+          <i class="far fa-comment-dots text-warning fa-2" v-if="state.comments[0]"></i>
           <i class="far fa-comment-dots fa-2" v-else></i>
         </button>
-        <div class="dropdown-menu bg-secondary py-0 p-2" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu bg-drop py-0 p-1" aria-labelledby="dropdownMenuButton">
           <CommentComponent v-for="c in state.comments" :key="c.id" :comment-prop="c" />
           <div class="dropdown-divider p-0 m-0"></div>
           <button type="button" class="btn btn-success w-100 p-0 m-0" title="Add Comment" @click="createComment(taskProp.id)">

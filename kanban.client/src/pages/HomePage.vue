@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
           <div class="col-md-6 col-10">
             <router-link :to="{name: 'Welcome'}">
-              <button type="button" class="btn btn-lg btn-dark mx-auto text-light mt-md-2 mt-3 mb-md-2" title="View Boards">
+              <button type="button" class="btn btn-lg btn-primary mx-auto text-light mt-md-2 mt-3 mb-md-2" title="View Boards">
                 VIEW YOUR BOARDS
               </button>
             </router-link>
@@ -19,7 +19,7 @@
       <div class="col-md-6 col-10 shadow bg-light text-center p-3 m-md-4 my-md-3 my-4">
         <h1>Log in to view your Bill Boards</h1>
         <!-- <img class="img-fluid my-4" src="http://www.fillmurray.com/400/400" alt="" title="Mr. Bill Murray"> -->
-        <h1><i class="fas fa-clipboard-check fa-spin text-info text-center m-md-4 my-4 m-0"></i></h1>
+        <h1><i class="fas fa-clipboard-check fa-spin text-warning text-center m-md-4 my-4 m-0"></i></h1>
       </div>
     </div>
   </div>

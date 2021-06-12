@@ -7,7 +7,7 @@
   </main>
   <footer>
     <div class="bg-dark text-light text-center pt-4 pb-3">
-      <h5>2021, Samaredonica Inc.</h5>
+      <h5>Made by <i class="fas fa-clipboard-check text-warning px-1"></i> Samaredonica Inc.</h5>
     </div>
   </footer>
 </template>

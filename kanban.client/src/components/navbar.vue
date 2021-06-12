@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center text-light">
-        <h1><span><i class="fas fa-clipboard-check text-info px-1"></i></span> Bill Boards</h1>
+        <h1><span><i class="fas fa-clipboard-check text-warning px-1"></i></span> Bill Boards</h1>
       </div>
     </router-link>
     <button
@@ -26,6 +26,11 @@
         <li class="nav-item">
           <router-link :to="{ name: 'Welcome' }" class="nav-link text-light">
             All Boards
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'AccessTest' }" class="nav-link text-light">
+            Accessibility
           </router-link>
         </li>
       </ul>

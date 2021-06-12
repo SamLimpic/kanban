@@ -22,6 +22,10 @@ main {
   align-items: stretch;
 }
 
+.bg-drop {
+  background-color: $body-bg;
+}
+
 .btn-overlay {
   position: absolute;
   top: 1rem;

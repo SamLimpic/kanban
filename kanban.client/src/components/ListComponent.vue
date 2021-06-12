@@ -7,9 +7,9 @@
       <button type="button" class="btn btn-sm btn-danger btn-size btn-overlay p-0" title="Delete List">
         <i class="fas fa-times" @click="deleteList(listProp.boardId, listProp.id, listProp.creatorId)"></i>
       </button>
-      <div class="col-12 text-center bg-primary pt-2 pb-3">
+      <div class="col-12 text-center bg-primary text-light pt-2 pb-3">
         <h4 class="m-0 pt-1 px-3 mx-3">
-          <u>{{ listProp.title }}</u>
+          {{ listProp.title }}
         </h4>
       </div>
 

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
           <div class="col-md-6 col-10 bg-light shadow p-3 m-md-4 my-md-3 my-3 mt-4 text-center">
             <h1>Current Board: <u>{{ state.activeBoard.title }}</u></h1>
-            <button type="button" class="btn btn-lg btn-dark mt-3 mb-2" @click="createList()" title="Create List">
+            <button type="button" class="btn btn-lg btn-primary mt-3 mb-2" @click="createList()" title="Create List">
               CREATE LIST
             </button>
           </div>
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="col-12 text-center  p-3 m-md-4 my-md-3 my-4" v-else>
-        <h1><i class="fas fa-circle-notch fa-spin text-info"></i></h1>
+        <h1><i class="fas fa-circle-notch fa-spin text-warning"></i></h1>
       </div>
     </div>
   </div>

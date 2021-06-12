@@ -1,5 +1,5 @@
 <template>
-  <a class="dropdown-item bg-transparent p-2">
+  <a class="dropdown-item bg-light p-2">
     <span><button type="button" class="btn btn-sm btn-danger btn-size p-0" title="Delete Comment">
       <i class="fas fa-times" @click="deleteComment(commentProp.taskId, commentProp.id, commentProp.creatorId)"></i>
     </button></span>
